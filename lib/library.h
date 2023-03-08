@@ -77,7 +77,7 @@ public:
     struct AllocFunc {
         int groupId;
         int arg;
-        enum class BufferSize {none,malloc,calloc,strdup};
+        enum class BufferSize {none,malloc,audio_malloc,calloc,audio_calloc,strdup};
         BufferSize bufferSize;
         int bufferSizeArg1;
         int bufferSizeArg2;

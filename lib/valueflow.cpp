@@ -8558,7 +8558,15 @@ static void valueFlowDynamicBufferSize(TokenList* tokenlist, SymbolDatabase* sym
             if (arg1 && arg1->hasKnownIntValue())
                 sizeValue = arg1->getKnownIntValue();
             break;
+        case Library::AllocFunc::BufferSize::audio_malloc:
+            if (arg1 && arg1->hasKnownIntValue())
+                sizeValue = arg1->getKnownIntValue();
+            break;
         case Library::AllocFunc::BufferSize::calloc:
+            if (arg1 && arg2 && arg1->hasKnownIntValue() && arg2->hasKnownIntValue())
+                sizeValue = arg1->getKnownIntValue() * arg2->getKnownIntValue();
+            break;
+        case Library::AllocFunc::BufferSize::audio_calloc:
             if (arg1 && arg2 && arg1->hasKnownIntValue() && arg2->hasKnownIntValue())
                 sizeValue = arg1->getKnownIntValue() * arg2->getKnownIntValue();
             break;
